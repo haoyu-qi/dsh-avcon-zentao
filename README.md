@@ -1,37 +1,41 @@
-# DSH AVCON ZenTao Plugin
+# DSH AVCON 禅道插件
 
-AVCON-branded Web customization and a personal ZenTao CLI work center for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).
+中文 | [English](README.en.md)
 
-The repository packages the customization as one profile bundle, backed by one Host gateway and one browser plugin. It provides:
+这是一个面向 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的 AVCON Web 界面定制与个人禅道 CLI 工作中心。
 
-- unified AVCON dark and red themes with 2K and 4K layouts;
-- a ZenTao connection-state indicator;
-- server, account, and password login through the official `zentao-cli`;
-- optional persistence of the server and account only;
-- automatic retrieval of tasks and Bugs assigned to the authenticated account;
-- draggable task and Bug references with the original ZenTao URL and a CLI-first retrieval instruction;
-- one bundle lifecycle: installing or removing `@deepseek-ai/dsh-avcon-zentao` activates or deactivates both runtime components and the scoped presentation.
+仓库将全部定制整合为一个 profile bundle，由一个 Host 网关和一个浏览器插件共同提供以下能力：
 
-Passwords and ZenTao Tokens are not committed to this repository. The password is passed only to the managed login subprocess environment and is not saved by the browser plugin.
+- AVCON 深色与红色主题，统一底图和背景色；
+- 针对 2K、4K 分辨率优化的响应式布局；
+- 禅道服务连接状态指示；
+- 通过官方 `zentao-cli` 登录服务器、账户和密码；
+- 可选择只保存服务器地址与账户，密码始终不保存；
+- 自动拉取当前账户名下的任务和 Bug；
+- 任务和 Bug 卡片保留原始禅道链接；
+- 将工作项拖入对话输入框时，自动插入可编辑的 Markdown 引用和 CLI 优先读取说明；
+- 安装或移除 `@deepseek-ai/dsh-avcon-zentao` 时，Host 网关、浏览器插件与 AVCON 视觉样式会一起启用或停用。
 
-## Compatibility
+仓库不包含任何禅道密码、Token 或 API 密钥。密码只会传递给受管的登录子进程环境，不会被浏览器插件保存。
 
-The overlay targets DeepSeek Harness commit `47f943859bef60e4160492346772ded9b24f765a` and its `0.1.0-rc.5` package line. The installer rejects a directory that is not a DeepSeek Harness checkout. Review upstream changes before applying it to a different revision.
+## 兼容性
 
-## Install from source
+当前 overlay 对应 DeepSeek Harness commit `47f943859bef60e4160492346772ded9b24f765a` 和 `0.1.0-rc.5` 包版本。安装器会拒绝非 DeepSeek Harness 目录。对其他版本使用前，请先检查上游界面文件是否发生变化。
 
-Clone this repository, then apply it to an existing DeepSeek Harness checkout:
+## 从源码安装
+
+克隆本仓库，并将插件应用到已有的 DeepSeek Harness 检出目录：
 
 ```sh
 git clone https://github.com/haoyu-qi/dsh-avcon-zentao.git
 cd dsh-avcon-zentao
-node scripts/install.mjs /absolute/path/to/deepseek-harness
+node scripts/install.mjs /你的/deepseek-harness/绝对路径
 ```
 
-Build Harness and activate the single bundle:
+进入 Harness 目录完成依赖安装、构建和 bundle 激活：
 
 ```sh
-cd /absolute/path/to/deepseek-harness
+cd /你的/deepseek-harness/绝对路径
 pnpm install
 pnpm run build
 node apps/cli/lib/bin.js plugin --profile web add \
@@ -41,28 +45,28 @@ node apps/cli/lib/bin.js plugin --profile web add \
 node apps/cli/lib/bin.js web
 ```
 
-The three local paths are passed in one command because package-manager links do not install a linked workspace package's dependencies into the target profile. Only `@deepseek-ai/dsh-avcon-zentao` declares `dsh.bundle`, so the profile activates one bundle.
+源码安装时需要在一条命令中列出三个本地路径，因为包管理器的 link 不会把被链接 workspace 包的依赖安装到目标 profile。只有 `@deepseek-ai/dsh-avcon-zentao` 声明了 `dsh.bundle`，所以 profile 实际只会启用一个 bundle。
 
-## Remove
+## 卸载
 
 ```sh
 node apps/cli/lib/bin.js plugin --profile web remove @deepseek-ai/dsh-avcon-zentao
 ```
 
-Removing the profile bundle removes both ZenTao runtime rows. Saved server and account convenience fields may remain in browser-local storage; passwords are never stored.
+移除 bundle 后，两条禅道运行时记录会一起消失。浏览器本地存储中可能仍保留用户主动保存的服务器和账户字段，但密码从不保存。
 
-## Repository layout
+## 仓库结构
 
-- `packages/bundle/avcon-zentao` — installable profile bundle and Cordis patch.
-- `packages/host/zentao-cli-gateway` — loopback RPC gateway and `zentao-cli` subprocess adapter.
-- `packages/client/ui-zentao-notifications` — account UI, status indicator, polling, work-item cards, and drag payloads.
-- `overlay` — AVCON presentation, composer drop target, responsive shell integration, and visual assets applied to the compatible Harness checkout.
-- `scripts/install.mjs` — deterministic overlay installer and TypeScript project-reference registration.
+- `packages/bundle/avcon-zentao`：可安装的 profile bundle 与 Cordis patch；
+- `packages/host/zentao-cli-gateway`：仅限回环访问的 RPC 网关和 `zentao-cli` 子进程适配；
+- `packages/client/ui-zentao-notifications`：账户界面、连接状态、自动拉取、工作项卡片与拖拽载荷；
+- `overlay`：AVCON 视觉样式、输入框拖拽目标、响应式外壳集成和图片资源；
+- `scripts/install.mjs`：overlay 安装和 TypeScript project reference 登记脚本。
 
-## Validation
+## 验证结果
 
-The source was validated in the parent Harness checkout with a complete build, lint, 28 documentation gates, 105 focused bundle/gateway/client tests, isolated profile install/remove checks, and an installed-profile browser boot with no console warnings or errors.
+代码已在所属 Harness 仓库中完成完整构建和 lint，28 项文档门禁全部通过，105 项 bundle／网关／客户端聚焦测试通过；隔离 profile 的安装、卸载和浏览器启动检查也已通过，控制台没有 warning 或 error。
 
-## License
+## 许可证
 
-MIT. See [LICENSE](LICENSE).
+MIT，见 [LICENSE](LICENSE)。
