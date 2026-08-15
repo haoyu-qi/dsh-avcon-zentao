@@ -20,7 +20,7 @@
 
 ## 兼容性
 
-当前 overlay 对应 DeepSeek Harness commit `47f943859bef60e4160492346772ded9b24f765a` 和 `0.1.0-rc.5` 包版本。安装器会拒绝非 DeepSeek Harness 目录。对其他版本使用前，请先检查上游界面文件是否发生变化。
+当前 overlay 针对 DeepSeek Harness `0.1.0-rc.5` 包版本。安装器会拒绝非 DeepSeek Harness 目录。对其他版本使用前，请先检查上游界面文件是否发生变化。
 
 ## 从源码安装
 

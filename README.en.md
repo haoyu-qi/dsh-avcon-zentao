@@ -18,7 +18,7 @@ Passwords and ZenTao Tokens are not committed to this repository. The password i
 
 ## Compatibility
 
-The overlay targets DeepSeek Harness commit `47f943859bef60e4160492346772ded9b24f765a` and its `0.1.0-rc.5` package line. The installer rejects a directory that is not a DeepSeek Harness checkout. Review upstream changes before applying it to a different revision.
+The overlay targets the DeepSeek Harness `0.1.0-rc.5` package line. The installer rejects a directory that is not a DeepSeek Harness checkout. Review upstream changes before applying it to a different revision.
 
 ## Install from source
 
