@@ -1,0 +1,6 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/host/zentao-cli-gateway/README.md
+README.md: 8aee87be2ecf0df5991c4b8a26462781c10b63a5
+README.zh.md: 4fb8c929123b52398db889a39b2edffc5d60ca30

@@ -1,0 +1,11 @@
+{
+  "name": "dsh-avcon-zentao-source",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Installable AVCON Web customization and personal ZenTao CLI work center for DeepSeek Harness",
+  "scripts": {
+    "install:harness": "node scripts/install.mjs"
+  },
+  "license": "MIT"
+}

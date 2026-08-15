@@ -1,0 +1,10 @@
+# AVCON Web customization and personal ZenTao CLI work center.
+# Install this bundle after dsh-web-app; both rows are additive and disappear
+# together when the bundle is removed from the profile.
+
+- insert:
+    - id: zentao-cli-gateway
+      name: '@deepseek-ai/dsh-host-zentao-cli-gateway'
+
+    - id: ui-zentao-notifications
+      name: '@deepseek-ai/dsh-client-ui-zentao-notifications'
