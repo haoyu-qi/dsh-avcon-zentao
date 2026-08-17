@@ -121,9 +121,14 @@ describe('zentao-cli gateway', () => {
         '--format=json',
         '--page=1',
         '--recPerPage=100',
-        '--filter=assignedTo=alice',
         '--sort=id_desc',
       ]))
+    }
+    for (const spec of specs.filter(spec => spec.argv.includes('task'))) {
+      expect(spec.argv).toContain('--status=assignedtome')
+    }
+    for (const spec of specs.filter(spec => spec.argv.includes('bug'))) {
+      expect(spec.argv).toContain('--browseType=assigntome')
     }
     expect(specs.filter(spec => spec.argv.includes('bug')).map(spec => spec.argv)).toEqual([
       expect.arrayContaining(['--product=3']),

@@ -2,5 +2,5 @@
 # side as of the last confirmed-consistent state. Both languages carry equal authority;
 # after editing either side, bring the other along and re-record with:
 #   pnpm run verify-translation-pairing --write packages/host/zentao-cli-gateway/README.md
-README.md: 8aee87be2ecf0df5991c4b8a26462781c10b63a5
-README.zh.md: 4fb8c929123b52398db889a39b2edffc5d60ca30
+README.md: 73b2ad2fdeecc0ec67beee6db83b9acd9674ea43
+README.zh.md: ee23cad7ddf6428e0c6f3fa4822b0479cd5989e8

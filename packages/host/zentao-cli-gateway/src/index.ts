@@ -174,7 +174,7 @@ export function apply(ctx: Context): void {
           '--format=json',
           '--page=1',
           '--recPerPage=100',
-          `--filter=assignedTo=${profile.account}`,
+          '--status=assignedtome',
           '--sort=id_desc',
         ], signal)
         for (const task of normalize('task', JSON.parse(output) as unknown, profile.server)) tasks.set(task.id, task)
@@ -206,7 +206,7 @@ export function apply(ctx: Context): void {
           '--format=json',
           '--page=1',
           '--recPerPage=100',
-          `--filter=assignedTo=${profile.account}`,
+          '--browseType=assigntome',
           '--sort=id_desc',
         ], signal)
         for (const bug of normalize('bug', JSON.parse(output) as unknown, profile.server)) bugs.set(bug.id, bug)

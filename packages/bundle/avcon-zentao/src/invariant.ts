@@ -9,7 +9,10 @@ export const name = 'avcon-zentao-bundle-invariant'
 /** Service required before the companion can register. */
 export const inject = ['invariants']
 
-// The static patch mounts packages that own their runtime relationships.
+// No runtime invariant: the package is a static patch-list carrier (a YAML
+// document of two loader rows owned by the gateway and notification packages);
+// it mounts no service, emits no events, and owns no mutable relation to
+// check. Each inserted row's own package carries that row's invariants.
 const install: InvariantInstaller = () => {}
 
 /** Register the package invariant companion.
